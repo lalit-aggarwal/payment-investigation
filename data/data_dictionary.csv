@@ -1,0 +1,15 @@
+file,field,description
+clients.csv,client_id,Unique synthetic client ID
+clients.csv,country,Relationship country
+clients.csv,risk_rating,"Low, Medium or High"
+clients.csv,client_type,"Individual, Corporate or Family Office"
+clients.csv,relationship_years,Relationship duration
+payments.csv,payment_id,Unique payment ID
+payments.csv,client_id,Initiating client
+payments.csv,beneficiary_name,Beneficiary
+payments.csv,beneficiary_country,Beneficiary country
+payments.csv,beneficiary_country_code,Synthetic ISO-style country code
+payments.csv,amount,Payment amount in stated currency
+payments.csv,currency,Payment currency
+payments.csv,channel,Payment channel
+payments.csv,payment_date,Synthetic payment date
