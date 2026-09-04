@@ -2,7 +2,7 @@
 
 ## The official questions
 
-Every candidate receives the SAME:
+Every participant receives the SAME:
 
 ```text
 questions/questions.json
@@ -24,6 +24,9 @@ python main.py \
 ## Required result
 
 Your program must produce one JSON object per official question.
+
+A complete sample with two questions is provided in
+`sample_submission.json`.
 
 Example:
 
@@ -62,7 +65,7 @@ Example:
 
 ## Important
 
-The organizer evaluator matches the candidate's `question_id` to the exact
+The organizer evaluator matches the participant's `question_id` to the exact
 official question.
 
 Do not change the question or payment ID.

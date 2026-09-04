@@ -21,6 +21,57 @@ Recommended flow:
     more tools if necessary
        ↓
     grounded final answer
+
+LLM integration guidance
+------------------------
+
+You need an LLM with tool-calling (function-calling) support.  Install
+your provider's SDK (e.g. ``pip install openai``) and load your API key
+from ``.env``.
+
+Minimal skeleton (adapt to your chosen provider):
+
+    import os, json
+    from openai import OpenAI
+
+    client = OpenAI()  # reads OPENAI_API_KEY from env
+
+    # 1. Define tool schemas for the LLM from the functions above.
+    tool_schemas = [
+        {
+            "type": "function",
+            "function": {
+                "name": "get_payment",
+                "description": "Retrieve a payment by ID.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "payment_id": {"type": "string"}
+                    },
+                    "required": ["payment_id"],
+                },
+            },
+        },
+        # ... repeat for each tool in TOOLS ...
+    ]
+
+    # 2. Call the LLM with the question and tool schemas.
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": question},
+    ]
+    response = client.chat.completions.create(
+        model=os.environ.get("OPENAI_MODEL", "gpt-4o"),
+        messages=messages,
+        tools=tool_schemas,
+    )
+
+    # 3. If the LLM requests a tool call, execute it and feed the
+    #    result back.  Loop until the LLM produces a final answer.
+    # 4. Parse the final answer into the required JSON schema.
+
+You may also use an agent framework (LangChain, etc.) if you prefer.
+The engineering behavior matters more than the framework name.
 """
 
 

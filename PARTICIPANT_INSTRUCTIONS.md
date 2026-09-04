@@ -4,14 +4,30 @@
 
 An AI investigation assistant, not a dashboard and not a simple rule engine.
 
+## Before you start
+
+Read these documents in this order:
+
+1. `PROBLEM_STATEMENT.md` — objective, architecture, and challenges
+2. `PARTICIPANT_INSTRUCTIONS.md` — this file (your three tasks and schedule)
+3. `DATA_NOTES.md` — important data clarifications (currency, country codes, dates)
+4. `AI_ARCHITECTURE_REQUIREMENTS.md` — required components
+5. `EVALUATION_CRITERIA.md` — how you will be scored
+6. `SUBMISSION_GUIDE.md` — required output format
+
+`ARCHITECTURE_HINTS.md` and `WHY_METHODS_ONLY.md` are short optional
+reads for additional context.
+
 ## What is provided?
 
 ### Data
 - `data/clients.csv`
 - `data/payments.csv`
+- `data/data_dictionary.csv`
+- See `DATA_NOTES.md` for important clarifications about the data
 
 ### Knowledge base
-- `data/policies/*.md`
+- `data/policies/*.md` (9 documents: 5 relevant, 4 decoys)
 
 ### Evaluation questions
 - `questions/questions.json`
@@ -23,6 +39,10 @@ An AI investigation assistant, not a dashboard and not a simple rule engine.
 
 The interfaces contain method signatures and detailed contracts, but **no
 implementations**.
+
+You may add helper functions, create new files, or adjust function
+signatures as needed.  The provided signatures are a starting point, not
+a constraint.  Do not modify `main.py` — it must remain the entry point.
 
 ## Your three coding tasks
 
@@ -57,7 +77,8 @@ The agent should:
 ## Suggested schedule
 
 ### 0–10 min
-Understand the data and policy documents.
+Understand the data and policy documents. Read `DATA_NOTES.md` for
+important clarifications about currency, country codes, and dates.
 
 ### 10–20 min
 Implement core data tools.

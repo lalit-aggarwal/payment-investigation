@@ -8,6 +8,14 @@ The implementation should preserve the source document name so that the final
 assistant can cite the evidence.
 """
 
+import os
+
+_POLICY_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data",
+    "policies",
+)
+
 
 def search_policy(
     query: str,
@@ -39,6 +47,29 @@ def search_policy(
     Implementation
     --------------
     Connect this method to ``rag/pipeline.py``.
+
+    Build the RAG index **once** (e.g., at module level or on first call
+    using a cache) and reuse it across all calls.  Do not rebuild the
+    index on every query.
+
+    Suggested wiring:
+
+        from rag.pipeline import (
+            load_policy_documents, chunk_documents, build_index, retrieve,
+        )
+
+        _index = None
+
+        def _get_index():
+            global _index
+            if _index is None:
+                docs = load_policy_documents(_POLICY_DIR)
+                chunks = chunk_documents(docs)
+                _index = build_index(chunks)
+            return _index
+
+        def search_policy(query, top_k=5):
+            return retrieve(_get_index(), query, top_k)
     """
     pass
 
