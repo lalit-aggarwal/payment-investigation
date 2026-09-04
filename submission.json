@@ -9,7 +9,7 @@
     "facts": {
       "payment_id": "P50000",
       "amount": "USD 12,000",
-      "beneficiary_name": "Redwood Services",
+      "beneficiary_name": "Redwood Services Hello",
       "beneficiary_country_code": "SG",
       "payment_date": "2026-01-23",
       "client_id": "C2000",
