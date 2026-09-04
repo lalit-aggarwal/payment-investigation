@@ -17,7 +17,7 @@ jobs:
 
     steps:
 
-      - name: Send evaluation request
+      - name: Request evaluation
         env:
           GH_TOKEN: ${{ secrets.EVALUATOR_TOKEN }}
           REPOSITORY: ${{ github.repository }}
