@@ -1,0 +1,142 @@
+[
+  {
+    "question_id": "Q01",
+    "payment_id": "P50000",
+    "question": "Should P50000 require enhanced review? Explain using policy.",
+    "answer": "No. P50000 is not above 100000 because the payment amount is USD 12000. Therefore, there is no enhanced review required under the global monetary threshold.",
+    "citations": ["global_payment_policy.md"],
+    "facts": {
+      "amount": 12000.0,
+      "currency": "USD",
+      "beneficiary_country_code": "SG",
+      "client_id": "C2000"
+    },
+    "tools_used": ["get_payment", "search_policy"]
+  },
+  {
+    "question_id": "Q02",
+    "payment_id": "P50001",
+    "question": "What review requirement applies to P50001 and why?",
+    "answer": "P50001 requires enhanced review because the payment amount is USD 125000, which exceeds 100,000. The destination AE is high-risk, so additional review is also required.",
+    "citations": ["global_payment_policy.md", "high_risk_jurisdictions.md"],
+    "facts": {
+      "amount": 125000.0,
+      "currency": "USD",
+      "beneficiary_country_code": "AE",
+      "client_id": "C2001"
+    },
+    "tools_used": ["get_payment", "search_policy"]
+  },
+  {
+    "question_id": "Q03",
+    "payment_id": "P50002",
+    "question": "Identify the risk indicators for P50002 and state the additional review required.",
+    "answer": "P50002 has a high-risk destination because the beneficiary country is AE. Therefore, additional review is required. The payment amount is USD 85000, below the global 100000 enhanced-review threshold.",
+    "citations": ["global_payment_policy.md", "high_risk_jurisdictions.md"],
+    "facts": {
+      "amount": 85000.0,
+      "currency": "USD",
+      "beneficiary_country_code": "AE",
+      "client_id": "C2002"
+    },
+    "tools_used": ["get_payment", "search_policy"]
+  },
+  {
+    "question_id": "Q04",
+    "payment_id": "P50003",
+    "question": "Does the data show a possible transaction-splitting pattern for C2003? Explain.",
+    "answer": "Yes. The data shows a possible transaction splitting pattern because C2003 made multiple payments involving the same beneficiary within the relevant period. The individual payments are below the threshold, but their combined pattern may indicate structuring and should be reviewed.",
+    "citations": ["global_payment_policy.md", "investigation_procedure.md"],
+    "facts": {
+      "amount": 45000.0,
+      "currency": "CHF",
+      "beneficiary_country_code": "CH",
+      "client_id": "C2003"
+    },
+    "tools_used": ["get_client_payments", "aggregate_beneficiary_24h", "search_policy"]
+  },
+  {
+    "question_id": "Q05",
+    "payment_id": "P50001",
+    "question": "Which policy documents should the assistant retrieve before recommending release of P50001?",
+    "answer": "The assistant should retrieve global_payment_policy.md and investigation_procedure.md before recommending release. The global payment policy establishes the applicable payment requirements, while the investigation procedure provides the investigation workflow and evidence requirements.",
+    "citations": ["global_payment_policy.md", "investigation_procedure.md"],
+    "facts": {
+      "amount": 125000.0,
+      "currency": "USD",
+      "beneficiary_country_code": "AE",
+      "client_id": "C2001"
+    },
+    "tools_used": ["get_payment", "search_policy"]
+  },
+  {
+    "question_id": "Q06",
+    "payment_id": "P50002",
+    "question": "Separate factual evidence from assumptions for P50002 and give a grounded recommendation.",
+    "answer": "The factual evidence is that P50002 is USD 85000 and has a beneficiary destination of AE. AE is high-risk under the exercise policy. The assumption is that the high-risk destination may indicate elevated risk, but it does not establish suspicious intent. The grounded recommendation is additional review.",
+    "citations": ["global_payment_policy.md", "high_risk_jurisdictions.md", "investigation_procedure.md"],
+    "facts": {
+      "amount": 85000.0,
+      "currency": "USD",
+      "beneficiary_country_code": "AE",
+      "client_id": "C2002"
+    },
+    "tools_used": ["get_payment", "search_policy"]
+  },
+  {
+    "question_id": "Q07",
+    "payment_id": "P50003",
+    "question": "What additional information should be requested before escalating the potential structuring pattern?",
+    "answer": "Before escalating the potential structuring pattern, request the source of funds, business purpose, beneficiary relationship, and payment history. These facts help establish the economic rationale and relationship between the payments before escalation.",
+    "citations": ["investigation_procedure.md", "global_payment_policy.md"],
+    "facts": {
+      "amount": 45000.0,
+      "currency": "CHF",
+      "beneficiary_country_code": "CH",
+      "client_id": "C2003"
+    },
+    "tools_used": ["get_client_payments", "search_policy"]
+  },
+  {
+    "question_id": "Q08",
+    "payment_id": "P50004",
+    "question": "What payment-review threshold applies based on the client's region?",
+    "answer": "The client's region is Switzerland. The Swiss policy threshold is CHF 80000 for RM review and CHF 120000 for enhanced review. P50004 is CHF 48000, so it is below both thresholds.",
+    "citations": ["regional_switzerland.md"],
+    "facts": {
+      "amount": 48000.0,
+      "currency": "CHF",
+      "beneficiary_country_code": "CH",
+      "client_id": "C2003"
+    },
+    "tools_used": ["get_payment", "get_client_profile", "search_policy"]
+  },
+  {
+    "question_id": "Q09",
+    "payment_id": "P50005",
+    "question": "If a payment is below the global threshold but the destination is high-risk, what should be recommended?",
+    "answer": "Additional review should be recommended when the destination is high-risk, even if the payment is below the global monetary threshold. The high-risk destination is an independent policy trigger and does not by itself establish suspicious activity.",
+    "citations": ["global_payment_policy.md", "high_risk_jurisdictions.md"],
+    "facts": {
+      "amount": 47000.0,
+      "currency": "CHF",
+      "beneficiary_country_code": "CH",
+      "client_id": "C2003"
+    },
+    "tools_used": ["get_payment", "search_policy"]
+  },
+  {
+    "question_id": "Q10",
+    "payment_id": "P50006",
+    "question": "Summarize the investigation workflow that should be followed.",
+    "answer": "The investigation workflow starts with establishing the client facts, identifying the applicable policy, checking for a high-risk destination, checking for structuring, separating assumptions from factual evidence, and recording the evidence used to support the conclusion.",
+    "citations": ["investigation_procedure.md"],
+    "facts": {
+      "amount": 24110.41,
+      "currency": "SGD",
+      "beneficiary_country_code": "HK",
+      "client_id": "C2023"
+    },
+    "tools_used": ["get_payment", "get_client_profile", "search_policy"]
+  }
+]
