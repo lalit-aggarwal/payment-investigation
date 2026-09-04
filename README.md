@@ -1,4 +1,4 @@
-# Julius Baer AI Hackathon — Payment Investigation Assistant
+# Julius Baer AI Hackathon — Payment Investigation Assistant - Hello
 
 Build a small AI-powered assistant for a bank's payment operations and
 compliance team.  The assistant answers natural-language
